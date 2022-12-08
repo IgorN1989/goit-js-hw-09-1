@@ -17,7 +17,9 @@ function onStartBtnClick(evt) {
   console.log(evt);
 }
 
-const futureDate = '2030-03-16T14:25:00';
+let futureDate = '2030-03-16T14:25:00';
+
+const startDate = new.Date().get
 
 class Timer {
   constructor(rootSelector, targetDate) {
