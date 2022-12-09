@@ -1,6 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-require('flatpickr/dist/themes/material_green.css');
+import 'flatpickr/dist/themes/material_green.css';
 
 const refs = {
   input: document.querySelector('#datetime-picker'),
@@ -102,10 +102,3 @@ const options = {
 };
 
 flatpickr(refs.input, options);
-
-// function getTargetDate() {
-//   const targetDate = new Date(refs.input.value);
-//   console.log('function', targetDate);
-// }
-
-// getTargetDate();
