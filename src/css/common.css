@@ -24,6 +24,10 @@ img {
   text-align: center;
 }
 
+.field {
+ width: 60px;
+}
+
 .value {
   font-size: 56px;
   display: block;
