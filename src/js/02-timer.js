@@ -16,12 +16,9 @@ refs.startBtn.disabled = true;
 refs.startBtn.addEventListener('click', onStartBtnClick);
 
 function onStartBtnClick() {
-  const currentTime = new Date();
-  const selectedTime = new Date(refs.input.value);
-  if (selectedTime < currentTime) {
-    window.alert('Please choose a date in the future');
-    return;
-  }
+  refs.startBtn.disabled = true;
+  refs.input.disabled = true;
+  countdownTimer.start();
 }
 
 class CountdownTimer {
@@ -56,7 +53,7 @@ class CountdownTimer {
 
     this.updateTimer(timer);
 
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       const timer = this.getDeltaTime(this.targetDate);
       this.updateTimer(timer);
     }, 1000);
@@ -84,7 +81,7 @@ class CountdownTimer {
 
 const countdownTimer = new CountdownTimer({
   selector: '#datetime-picker',
-  targetDate: new Date('December, 10 2022 19:00:00'),
+  targetDate: new Date('December, 9 2022 4:45:45'),
 });
 
 countdownTimer.start();
@@ -95,10 +92,20 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    if (selectedDates[0] < new Date()) {
+      window.alert('Please choose a date in the future');
+      return;
+    }
+    refs.startBtn.disabled = false;
+    return selectedDates[0];
   },
 };
 
 flatpickr(refs.input, options);
 
-console.log(new Date(refs.input.value));
+// function getTargetDate() {
+//   const targetDate = new Date(refs.input.value);
+//   console.log('function', targetDate);
+// }
+
+// getTargetDate();
