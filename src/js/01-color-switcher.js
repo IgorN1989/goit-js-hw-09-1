@@ -7,7 +7,10 @@ const refs = {
 refs.stopBtn.disabled = true;
 
 class ColorSwitcher {
-  constructor({ onSwitch }) {
+  constructor({ onSwitch, startBtn, stopBtn, body }) {
+    this.startBtn = startBtn;
+    this.stopBtn = stopBtn;
+    this.body = body;
     this.intervalId = null;
     this.isActive = false;
     this.onSwitch = onSwitch;
@@ -17,8 +20,8 @@ class ColorSwitcher {
     if (this.isActive) {
       return;
     }
-    refs.startBtn.disabled = true;
-    refs.stopBtn.disabled = false;
+    this.startBtn.disabled = true;
+    this.stopBtn.disabled = false;
     this.onSwitch();
     this.isActive = true;
     this.intervalId = setInterval(() => {
@@ -27,9 +30,9 @@ class ColorSwitcher {
   }
 
   stop() {
-    refs.startBtn.disabled = false;
-    refs.stopBtn.disabled = true;
-    refs.body.style.backgroundColor = '';
+    this.startBtn.disabled = false;
+    this.stopBtn.disabled = true;
+    this.body.style.backgroundColor = '';
     clearInterval(this.intervalId);
     this.isActive = false;
   }
@@ -37,6 +40,9 @@ class ColorSwitcher {
 
 const colorSwitcher = new ColorSwitcher({
   onSwitch: changeBodyColor,
+  startBtn: refs.startBtn,
+  stopBtn: refs.stopBtn,
+  body: refs.body,
 });
 
 refs.startBtn.addEventListener(
