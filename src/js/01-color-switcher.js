@@ -6,12 +6,11 @@ const refs = {
 
 refs.stopBtn.disabled = true;
 
-refs.startBtn.addEventListener('click', () =>
+refs.startBtn.addEventListener(
+  'click',
   colorSwitcher.start.bind(colorSwitcher)
 );
-refs.stopBtn.addEventListener('click', () =>
-  colorSwitcher.stop.bind(colorSwitcher)
-);
+refs.stopBtn.addEventListener('click', colorSwitcher.stop.bind(colorSwitcher));
 
 class ColorSwitcher {
   constructor({ onSwitch }) {
