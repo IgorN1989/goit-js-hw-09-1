@@ -6,12 +6,6 @@ const refs = {
 
 refs.stopBtn.disabled = true;
 
-refs.startBtn.addEventListener(
-  'click',
-  colorSwitcher.start.bind(colorSwitcher)
-);
-refs.stopBtn.addEventListener('click', colorSwitcher.stop.bind(colorSwitcher));
-
 class ColorSwitcher {
   constructor({ onSwitch }) {
     this.intervalId = null;
@@ -44,6 +38,12 @@ class ColorSwitcher {
 const colorSwitcher = new ColorSwitcher({
   onSwitch: changeBodyColor,
 });
+
+refs.startBtn.addEventListener(
+  'click',
+  colorSwitcher.start.bind(colorSwitcher)
+);
+refs.stopBtn.addEventListener('click', colorSwitcher.stop.bind(colorSwitcher));
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
